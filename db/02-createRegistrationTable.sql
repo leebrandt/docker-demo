@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS "Registrations"(
+  "Id" SERIAL PRIMARY KEY,
+  "Token" VARCHAR(255) UNIQUE,
+  "Date" TIMESTAMP DEFAULT now()
+)

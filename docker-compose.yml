@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+  api:
+    image: kcdc/api:latest
+    build:
+      context: .
+    ports:
+      - 80:80
