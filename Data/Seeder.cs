@@ -5,11 +5,11 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Kcdc.Api.Data
 {
-    public class Seeder
+  public class Seeder
+  {
+    public static void SeedSpeakers(IServiceProvider serviceProvider)
     {
-        public static void SeedSpeakers(IServiceProvider serviceProvider)
-        {
-            var speakers = new List<Speaker>{
+      var speakers = new List<Speaker>{
                 new Speaker{
                     First = "Lee",
                     Last = "Brandt",
@@ -22,15 +22,36 @@ namespace Kcdc.Api.Data
                 }
             };
 
-            using (var serviceScope = serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
+      var sponsors = new List<Sponsor>
             {
-                var context = serviceScope.ServiceProvider.GetService<KcdcContext>();
-                
-                if (!context.Speakers.Any()) {
-                    context.AddRange(speakers);
-                    context.SaveChanges();
+                new Sponsor{
+                    CompanyName = "Adaptive Solutions Group",
+                    Level = "Titanium",
+                    Description = "",
+                    ContactName = "Dave Grace",
+                    ContactEmail = "dgrace@adaptivesg.com",
+                    FinanceName = "Dave Grace",
+                    FinanceEmail = "dgrace@adaptivesg.com"
                 }
-            }
+            };
+
+      using (var serviceScope = serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
+      {
+        var context = serviceScope.ServiceProvider.GetService<KcdcContext>();
+
+        if (!context.Speakers.Any())
+        {
+          context.Speakers.AddRange(speakers);
+          context.SaveChanges();
         }
+
+        if (!context.Sponsors.Any())
+        {
+          context.Sponsors.AddRange(sponsors);
+          context.SaveChanges();
+        }
+
+      }
     }
+  }
 }

@@ -8,4 +8,4 @@ RUN ["dotnet", "restore"]
 
 RUN ["dotnet", "build"]
 
-EXPOSE 80/tcp
+EXPOSE 5000/tcp

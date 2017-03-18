@@ -20,7 +20,7 @@ namespace Kcdc.Api
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
-                .UseUrls("http://+:80")
+                .UseUrls("http://+:5000")
                 .Build();
 
             host.Run();
